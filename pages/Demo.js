@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "",
+    backgroundColor: "transparent",
     padding: 100,
   },
   countContainer: {
