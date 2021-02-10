@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native';
-
+import { Audio } from 'expo-av'
 
 const SoundModule = () => {
 
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     },
     soundButton:{
         padding:30,
-        backgroundColor:"red",
+        backgroundColor:"#ff00ff",
         borderRadius:20
     }
 })
