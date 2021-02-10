@@ -38,7 +38,8 @@ export default function Demo() {
  
 const styles = StyleSheet.create({
   container: {
-      color: '#333333',
+    color: 'white',
+    backgroundColor: '#161F38',
     height:'100%',
   },
  
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
  
   title: {
     fontSize:18,
-    color: '#333',
+    color: '#fff',
       marginBottom: 16,
   },
  
