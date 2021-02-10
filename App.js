@@ -18,6 +18,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Demo from "./pages/Demo";
 import Cours from "./pages/Cours";
 import Account from "./pages/Account";
+import SoundModule from "./components/SoundModule";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -52,7 +54,7 @@ export default function App() {
           inactiveTintColor: "#62CF7E",
         }}
       >
-        <Tab.Screen name="Favoris" component={Cours} />
+        <Tab.Screen name="Favoris" component={SoundModule} />
         <Tab.Screen name="Ajouter" component={Demo} />
         <Tab.Screen name="Collection" component={Account} />
       </Tab.Navigator>
