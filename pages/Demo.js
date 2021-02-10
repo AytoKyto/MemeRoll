@@ -1,10 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, Image, View, TouchableOpacity } from "react-native";
+import Header from "../components/Header";
 
 export default function Demo() {
   return (
     <View style={styles.container}>
+      <Header />
       <View style={styles.wrapperSong}>
         <Text style={styles.song}>Ajouter votre song</Text>
         <TouchableOpacity style={styles.button}>
@@ -15,7 +17,7 @@ export default function Demo() {
         </TouchableOpacity>
       </View>
       <View style={styles.wrapperGif}>
-        <Text style={styles.song}>Ajouter votre song</Text>
+        <Text style={styles.song}>Ajouter votre GIF</Text>
         <TouchableOpacity style={styles.button}>
           <Image
             style={styles.tinyLogo}
@@ -35,13 +37,14 @@ const styles = StyleSheet.create({
   },
   song: {
     color: "white",
-    fontSize: 20,
+    fontSize: 25,
     textAlign: "center",
     textTransform: "uppercase",
+    marginBottom: -40,
   },
   tinyLogo: {
-    width: 100,
-    height: 100,
+    width: 140,
+    height: 140,
   },
   button: {
     alignItems: "center",
