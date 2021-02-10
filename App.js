@@ -21,15 +21,9 @@ import Account from "./pages/Account";
 
 const Tab = createBottomTabNavigator();
 
-const MyTheme = {
-  colors: {
-    background: "#62CF7E",
-    border: "#62CF7E",
-  },
-};
 export default function App() {
   return (
-    <NavigationContainer theme={MyTheme}>
+    <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -52,8 +46,8 @@ export default function App() {
           inactiveTintColor: "#62CF7E",
         }}
       >
-        <Tab.Screen name="Favoris" component={Cours} />
         <Tab.Screen name="Ajouter" component={Demo} />
+        <Tab.Screen name="Favoris" component={Cours} />
         <Tab.Screen name="Collection" component={Account} />
       </Tab.Navigator>
     </NavigationContainer>
