@@ -17,7 +17,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 /* Pages */
 import Demo from "./pages/Demo";
 import Cours from "./pages/Cours";
-import Account from "./pages/Account";
+import Game from "./pages/Game";
 
 
 const Tab = createBottomTabNavigator();
@@ -47,7 +47,7 @@ export default function App() {
           inactiveTintColor: "#62CF7E",
         }}
       >
-        <Tab.Screen name="Collection" component={Account} /> 
+        <Tab.Screen name="Collection" component={Game} /> 
         <Tab.Screen name="Favoris" component={Cours} />
         <Tab.Screen name="Ajouter" component={Demo} />
       </Tab.Navigator>

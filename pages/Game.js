@@ -10,11 +10,15 @@ import {
   View,
 } from "react-native";
 
-export default function Account() {
+export default function Game() {
   return (
     <View style={styles.bigWrapper}>
       <View style={styles.wrapperLogo}>
         <Image style={styles.logo} source={require("../assets/logo.png")} />
+      </View>
+      <View style={styles.wrapperTour}>
+        <Text style={styles.tour}>TOUR</Text>
+        <Text style={styles.nbrTour}>4</Text>
       </View>
       <View style={styles.wrapperGameView}></View>
       <View style={styles.wrapperAction}>
@@ -67,6 +71,28 @@ const styles = StyleSheet.create({
     backgroundColor: "#707070",
     marginTop: 85,
   },
+  wrapperTour: {
+    backgroundColor: "white",
+    position: "absolute",
+    width: "40%",
+    height: "8%",
+    display: "flex",
+    marginTop: "15%",
+    marginLeft: "80%",
+    borderRadius: 2000,
+    zIndex: 999,
+  },
+  tour: {
+    color: "#F00A0A",
+    marginLeft: "20%",
+    marginTop: "5%",
+  },
+  nbrTour: {
+    color: "#F00A0A",
+    marginLeft: "35%",
+    marginTop: "-2%",
+    fontSize: 20,
+  },
   wrapperAction: {
     display: "flex",
     justifyContent: "center",
@@ -83,7 +109,7 @@ const styles = StyleSheet.create({
     marginTop: -30,
     textAlign: "center",
     textTransform: "uppercase",
-    color: "white"
+    color: "white",
   },
   wrapperShield: {
     width: "25%",
