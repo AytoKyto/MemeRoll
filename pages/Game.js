@@ -25,7 +25,7 @@ export default function Game() {
       </View>
       <View style={styles.wrapperGameView}>
         <ImageBackground
-          source={require("../assets/wall.png")}
+          source={require("../assets/wall.jpg")}
           style={styles.image}
         ></ImageBackground>
         <View style={styles.wrapperMainPerso}>
@@ -36,6 +36,7 @@ export default function Game() {
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun}>4</Text>
           </View>
+        <Image style={styles.imgInBoxMain} source={require("../assets/heroReload.png")} />
         </View>
         <View style={styles.wrapperBot}>
           <View style={styles.wrapperLifeBar}>
@@ -45,8 +46,11 @@ export default function Game() {
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun}>4</Text>
           </View>
+        <Image style={styles.imgInBoxMain} source={require("../assets/heroShotRev.png")} />
         </View>
-        <View style={styles.wrapperWall}></View>
+        <View style={styles.wrapperWall}>
+        <Image style={styles.imgInBox} source={require("../assets/wallbox.png")} />
+        </View>
       </View>
       <View style={styles.wrapperAction}>
         <GameLogic style={styles.gamelogic} choice={"hide"}>
@@ -186,14 +190,12 @@ const styles = StyleSheet.create({
     width: "fitContent",
   },
   wrapperMainPerso: {
-    backgroundColor: "#F00A0A",
     width: "40%",
     height: "55%",
     bottom: "0%",
     position: "absolute",
   },
   wrapperBot: {
-    backgroundColor: "white",
     width: "40%",
     height: "45%",
     position: "absolute",
@@ -201,7 +203,6 @@ const styles = StyleSheet.create({
     marginTop: "10%",
   },
   wrapperWall: {
-    backgroundColor: "#F00A0A",
     height: "25%",
     width: "55%",
     position: "absolute",
@@ -209,7 +210,6 @@ const styles = StyleSheet.create({
     marginTop: "40%",
   },
   wrapperLifeBar: {
-    backgroundColor: "#132E49",
     width: "100%",
     height: "15%",
     display: "flex",
@@ -231,5 +231,15 @@ const styles = StyleSheet.create({
     height: "100%",
     fontSize: 25,
     color: "white",
+  },
+  imgInBox: {
+    height: "100%",
+    width: "100%",
+    resizeMode: "contain",
+  },
+  imgInBoxMain: {
+    height: "83%",
+    width: "100%",
+    resizeMode: "contain",
   },
 });
