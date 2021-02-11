@@ -28,9 +28,25 @@ export default function Game() {
           source={require("../assets/wall.png")}
           style={styles.image}
         ></ImageBackground>
-      <View style={styles.wrapperMainPerso}></View>
-      <View style={styles.wrapperBot}></View>
-      <View style={styles.wrapperWall}></View>
+        <View style={styles.wrapperMainPerso}>
+          <View style={styles.wrapperLifeBar}>
+            <Image style={styles.life} source={require("../assets/life.png")} />
+            <Image style={styles.life} source={require("../assets/life.png")} />
+            <Image style={styles.life} source={require("../assets/life.png")} />
+            <Image style={styles.life} source={require("../assets/mun.png")} />
+            <Text style={styles.mun}>4</Text>
+          </View>
+        </View>
+        <View style={styles.wrapperBot}>
+          <View style={styles.wrapperLifeBar}>
+            <Image style={styles.life} source={require("../assets/life.png")} />
+            <Image style={styles.life} source={require("../assets/life.png")} />
+            <Image style={styles.life} source={require("../assets/life.png")} />
+            <Image style={styles.life} source={require("../assets/mun.png")} />
+            <Text style={styles.mun}>4</Text>
+          </View>
+        </View>
+        <View style={styles.wrapperWall}></View>
       </View>
       <View style={styles.wrapperAction}>
         <GameLogic style={styles.gamelogic} choice={"hide"}>
@@ -101,7 +117,7 @@ const styles = StyleSheet.create({
     width: "40%",
     height: "9%",
     display: "flex",
-    marginTop: "20%",
+    marginTop: "12%",
     marginLeft: "80%",
     borderRadius: 2000,
     zIndex: 999,
@@ -171,25 +187,49 @@ const styles = StyleSheet.create({
   },
   wrapperMainPerso: {
     backgroundColor: "#F00A0A",
-    width: "33%",
-    height: "45%",
+    width: "40%",
+    height: "55%",
     bottom: "0%",
     position: "absolute",
   },
   wrapperBot: {
     backgroundColor: "white",
-    width: "33%",
+    width: "40%",
     height: "45%",
     position: "absolute",
-    marginLeft: "40%",
+    marginLeft: "50%",
     marginTop: "10%",
   },
   wrapperWall: {
     backgroundColor: "#F00A0A",
     height: "25%",
-    width: "65%",
+    width: "55%",
     position: "absolute",
     right: "0%",
     marginTop: "40%",
-  }
+  },
+  wrapperLifeBar: {
+    backgroundColor: "#132E49",
+    width: "100%",
+    height: "15%",
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    paddingLeft: 5,
+  },
+  life: {
+    width: "15%",
+    height: "90%",
+    resizeMode: "contain",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 1,
+  },
+  mun: {
+    width: "20%",
+    height: "100%",
+    fontSize: 25,
+    color: "white",
+  },
 });
