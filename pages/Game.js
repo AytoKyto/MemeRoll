@@ -11,25 +11,22 @@ import {
   View,
 } from "react-native";
 
-import {GameLogic} from "../components/GameLogic";
-import {Heart} from "../components/Heart";
-import {Bot} from "../components/Bot";
+import { GameLogic } from "../components/GameLogic";
+import { Heart } from "../components/Heart";
+import { Bot } from "../components/Bot";
 
 export default function Game() {
-
   const [playerState, setPlayerState] = useState({
-    life: 3 ,
-    bullet: 12,
-    hidden: false
+    life: 3,
+    bullet: 2,
+    hidden: false,
   });
 
   const [botState, setBotState] = useState({
     life: 3,
-    bullet: 12,
-    hidden: false
+    bullet: 1,
+    hidden: false,
   });
-
-
 
   return (
     <View style={styles.bigWrapper}>
@@ -50,25 +47,38 @@ export default function Game() {
         {/* joueur*/}
         <View style={styles.wrapperMainPerso}>
           <View style={styles.wrapperLifeBar}>
-            <Heart hearts={playerState.life}/>
+            <View style={styles.wrapperHeart}>
+              <Heart hearts={playerState.life} />
+            </View>
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun}>{playerState.bullet}</Text>
           </View>
-          <Image style={styles.imgInBoxMain} source={require("../assets/heroReload.png")} />
+          <Image
+            style={styles.imgInBoxMain}
+            source={require("../assets/heroReload.png")}
+          />
         </View>
 
         {/* ennemy*/}
         <View style={styles.wrapperBot}>
           <View style={styles.wrapperLifeBar}>
-          <Heart hearts={botState.life}/>
+            <View style={styles.wrapperHeart}>
+              <Heart hearts={botState.life} />
+            </View>
             <Image style={styles.life} source={require("../assets/mun.png")} />
-            <Text style={styles.mun}>{botState.bullet}</Text>
+            <Text style={styles.mun2}>{botState.bullet}</Text>
           </View>
-          <Image style={styles.imgInBoxMain} source={require("../assets/heroShotRev.png")} />
+          <Image
+            style={styles.imgInBoxMain}
+            source={require("../assets/heroShotRev.png")}
+          />
         </View>
 
         <View style={styles.wrapperWall}>
-          <Image style={styles.imgInBox} source={require("../assets/wallbox.png")} />
+          <Image
+            style={styles.imgInBox}
+            source={require("../assets/wallbox.png")}
+          />
         </View>
       </View>
       <View style={styles.wrapperAction}>
@@ -209,7 +219,7 @@ const styles = StyleSheet.create({
     width: "fitContent",
   },
   wrapperMainPerso: {
-    width: "40%", 
+    width: "40%",
     height: "55%",
     bottom: "0%",
     position: "absolute",
@@ -240,16 +250,26 @@ const styles = StyleSheet.create({
     width: "15%",
     height: "90%",
     resizeMode: "contain",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 1,
+    marginLeft: "-22%",
+  },
+  wrapperHeart: {
+    width: "100%",
+    height: "100%",
   },
   mun: {
     width: "20%",
     height: "100%",
-    fontSize: 25,
+    fontSize: 33,
     color: "white",
+    marginLeft: "4%",
+  },
+  mun2: {
+    marginTop: "-5%",
+    width: "20%",
+    height: "100%",
+    fontSize: 33,
+    color: "white",
+    marginLeft: "4%",
   },
   imgInBox: {
     height: "100%",
