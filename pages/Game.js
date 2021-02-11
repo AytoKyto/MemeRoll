@@ -11,7 +11,7 @@ import {
   View,
 } from "react-native";
 
-import GameLogic from "../components/GameLogic";
+import {GameLogic} from "../components/GameLogic";
 
 export default function Game() {
   return (

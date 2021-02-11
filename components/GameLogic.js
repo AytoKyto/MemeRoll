@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { StyleSheet, Text, Image, View, TouchableOpacity, Button } from "react-native";
 
 
-const GameLogic = (props) => {
+export const GameLogic = (props) => {
 
     const {choice} = props;
 
@@ -26,7 +26,7 @@ const GameLogic = (props) => {
         setPlayerAction(choice);
     },[]);
 
-    const Actions = () => {
+   const Actions = () => {
         switch (conflict) {
             case 'shot shot':
                 alert("bullets intercepted each other !!");
@@ -68,4 +68,6 @@ const GameLogic = (props) => {
 
 }
 
-export default GameLogic;
+
+
+/* export default GameLogic; */
