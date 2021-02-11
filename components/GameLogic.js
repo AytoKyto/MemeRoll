@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { StyleSheet, Text, Image, View, TouchableOpacity, Button } from "react-native";
 
 
@@ -19,8 +19,12 @@ const GameLogic = (props) => {
     });
 
     const [playerAction, setPlayerAction] = useState();
-    const [botAction, setBotAction] = useState('shot');
+    const [botAction, setBotAction] = useState('hide');
     const conflict = `${playerAction} ${botAction}`;
+
+    useEffect(()=>{
+        setPlayerAction(choice);
+    },[]);
 
     const Actions = () => {
         switch (conflict) {
@@ -56,13 +60,8 @@ const GameLogic = (props) => {
         }
     }
 
-    const playerChoice = (action)=>{
-        setPlayerAction(action);
-        Actions();
-    }
-
     return(
-        <TouchableOpacity onPress={()=>playerChoice(choice)}>
+        <TouchableOpacity onPress={()=>Actions()}>
             {props.children}
         </TouchableOpacity>
     )
