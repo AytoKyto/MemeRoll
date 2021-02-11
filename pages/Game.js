@@ -1,24 +1,21 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
-  ScrollView,
+  TouchableOpacity,
   Image,
-  Button,
-  Alert,
   Text,
   ImageBackground,
   View,
 } from "react-native";
 
-import { GameLogic } from "../components/GameLogic";
-import {Heart} from "../components/Heart";
+import { Heart } from "../components/Heart";
 
 
 export default function Game() {
 
   const [playerState, setPlayerState] = useState({
-    life: 3 ,
+    life: 3,
     bullet: 12,
     hidden: false
   });
@@ -29,7 +26,56 @@ export default function Game() {
     hidden: false
   });
 
+  const [playerAction, setPlayerAction] = useState();
+  const [botAction, setBotAction] = useState('hide');
+  const conflict = `${playerAction} ${botAction}`;
 
+  const oskour = (choice) => {
+    setPlayerAction(choice);
+    Actions(conflict);
+  }
+
+    useEffect(() => {
+      setPlayerAction()
+    }, []);
+  
+
+
+  const Actions = (result) => {
+    switch (result) {
+      case 'shot shot':
+        alert("bullets intercepted each other !!");
+        break;
+      case 'shot hide':
+        alert("YOU MISSED !!");
+        break
+      case 'shot reload':
+        alert("Right in the face !");
+        break;
+      case 'reload shot':
+        alert('He got us!');
+        break;
+      case 'reload hide':
+        alert('We got lucky!');
+        break;
+      case 'reload reload':
+        alert(`that's anticlimactic`);
+        break;
+      case 'hide shot':
+        alert("He missed !");
+        break;
+      case 'hide hide':
+        alert('Pussys!');
+        break;
+      case 'hide reload':
+        alert('Watch out !!');
+        break;
+      default:
+        alert(`you clicked on ${playerAction}`);
+    }
+  }
+
+ 
 
   return (
     <View style={styles.bigWrapper}>
@@ -49,7 +95,7 @@ export default function Game() {
         {/* joueur*/}
         <View style={styles.wrapperMainPerso}>
           <View style={styles.wrapperLifeBar}>
-            <Heart hearts={playerState.life}/>
+            <Heart hearts={playerState.life} />
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun}>{playerState.bullet}</Text>
           </View>
@@ -59,7 +105,7 @@ export default function Game() {
         {/* ennemy*/}
         <View style={styles.wrapperBot}>
           <View style={styles.wrapperLifeBar}>
-          <Heart hearts={botState.life}/>
+            <Heart hearts={botState.life} />
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun}>{botState.bullet}</Text>
           </View>
@@ -70,18 +116,19 @@ export default function Game() {
           <Image style={styles.imgInBox} source={require("../assets/wallbox.png")} />
         </View>
       </View>
-      <View style={styles.wrapperAction}>
-        <GameLogic style={styles.gamelogic} choice={"hide"}>
-          <View style={styles.wrapperShield}>
+      <View style={styles.wrapperAction} >
+
+        <TouchableOpacity onPress={() => oskour('hide')}  >
+          <View style={styles.wrapperShield} >
             <Image
               style={styles.actionLogo}
               source={require("../assets/shield.png")}
             />
             <Text style={styles.actionName}>Shield</Text>
           </View>
-        </GameLogic>
+        </TouchableOpacity>
 
-        <GameLogic style={styles.gamelogic} choice={"shot"}>
+        <TouchableOpacity onPress={() => oskour('shot')}  >
           <View style={styles.wrapperShot}>
             <Image
               style={styles.actionLogo}
@@ -89,9 +136,9 @@ export default function Game() {
             />
             <Text style={styles.actionName}>Shot</Text>
           </View>
-        </GameLogic>
+        </TouchableOpacity>
 
-        <GameLogic style={styles.gamelogic} choice={"reload"}>
+        <TouchableOpacity onPress={() => oskour('reload')}  >
           <View style={styles.wrapperReload}>
             <Image
               style={styles.actionLogo}
@@ -99,7 +146,8 @@ export default function Game() {
             />
             <Text style={styles.actionName}>Reload</Text>
           </View>
-        </GameLogic>
+        </TouchableOpacity>
+
       </View>
     </View>
   );
