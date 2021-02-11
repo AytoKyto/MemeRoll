@@ -10,7 +10,10 @@ import {
   View,
 } from "react-native";
 
-export default function Account() {
+import GameLogic from '../components/GameLogic';
+
+
+export default function Game() {
   return (
     <View style={styles.bigWrapper}>
       <View style={styles.wrapperLogo}>
@@ -18,28 +21,38 @@ export default function Account() {
       </View>
       <View style={styles.wrapperGameView}></View>
       <View style={styles.wrapperAction}>
-        <View style={styles.wrapperShield}>
-          <Image
-            style={styles.actionLogo}
-            source={require("../assets/shield.png")}
-          />
-          <Text style={styles.actionName}>Shield</Text>
-        </View>
-        <View style={styles.wrapperShot}>
-          <Image
-            style={styles.actionLogo}
-            source={require("../assets/shot.png")}
-          />
-          <Text style={styles.actionName}>Shot</Text>
-        </View>
-        <View style={styles.wrapperReload}>
-          <Image
-            style={styles.actionLogo}
-            source={require("../assets/reload.png")}
-          />
-          <Text style={styles.actionName}>Reload</Text>
-        </View>
+
+        <GameLogic style={styles.gamelogic} choice={"hide"}  >
+          <View style={styles.wrapperShield}>
+            <Image
+              style={styles.actionLogo}
+              source={require("../assets/shield.png")}
+            />
+            <Text style={styles.actionName}>Shield</Text>
+          </View>
+        </GameLogic>
+
+        <GameLogic style={styles.gamelogic} choice={"shot"} >
+          <View style={styles.wrapperShot}>
+            <Image
+              style={styles.actionLogo}
+              source={require("../assets/shot.png")}
+            />
+            <Text style={styles.actionName}>Shot</Text>
+          </View>
+        </GameLogic>
+
+        <GameLogic style={styles.gamelogic} choice={"reload"} >
+          <View style={styles.wrapperReload}>
+            <Image
+              style={styles.actionLogo}
+              source={require("../assets/reload.png")}
+            />
+            <Text style={styles.actionName}>Reload</Text>
+          </View>
+      </GameLogic>
       </View>
+
     </View>
   );
 }
@@ -109,4 +122,7 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10,
   },
+  gamelogic: {
+    width: "fitContent"
+  }
 });

@@ -10,7 +10,6 @@ const GameLogic = (props) => {
         life: 3,
         bullet: 0,
         hidden:false
-
     });
 
     const [botState, setBotState] = useState({
@@ -20,7 +19,7 @@ const GameLogic = (props) => {
     });
 
     const [playerAction, setPlayerAction] = useState();
-    const [botAction, setBotAction] = useState();
+    const [botAction, setBotAction] = useState('shot');
     const conflict = `${playerAction} ${botAction}`;
 
     const Actions = () => {
@@ -53,7 +52,7 @@ const GameLogic = (props) => {
                 alert('Watch out !!');
                 break;
             default:
-                alert('Nothing appened');
+                alert(`you clicked on ${choice}`); 
         }
     }
 
@@ -63,7 +62,11 @@ const GameLogic = (props) => {
     }
 
     return(
-        <Button onPress={()=>playerChoice(choice)} />
+        <TouchableOpacity onPress={()=>playerChoice(choice)}>
+            {props.children}
+        </TouchableOpacity>
     )
 
 }
+
+export default GameLogic;
