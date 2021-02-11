@@ -1,42 +1,32 @@
-import React from 'react';
-import {
-    StyleSheet,
-    Image,
-    View,
-} from "react-native";
+import React from "react";
+import { StyleSheet, Image, View } from "react-native";
 
 export const Heart = (props) => {
+  const { hearts } = props;
 
-    const { hearts } = props;
+  let heartCount = [];
 
-    let heartCount = [];
+  for (let i = 0; i < hearts; i++) {
+    heartCount.push(
+      <Image style={styles.life} source={require("../assets/life.png")} />
+    );
+  }
 
-    for (let i = 0; i < hearts; i++) {
-        heartCount.push(
-            <Image style={styles.life} source={require("../assets/life.png")} />
-        )
-    }
-
-    return (
-        <View style={styles.lifeWrapp}>
-            {heartCount}
-        </View>
-    )
-
-}
+  return <View style={styles.lifeWrapp}>{heartCount}</View>;
+};
 
 const styles = StyleSheet.create({
-    lifeWrapp:{
-        display:"flex",
-        flexDirection:"row",
-        justifyContent:"space-evenly"
-    },
-life: {
-    width: 90,
+  lifeWrapp: {
+    width: "30%",
+    height: "90%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginLeft: "20%",
+  },
+  life: {
+    width: "90%",
     height: "90%",
     resizeMode: "contain",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 1,
-}
-})
+  },
+});
