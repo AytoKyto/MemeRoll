@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     width: "fitContent",
   },
   wrapperMainPerso: {
-    width: "40%",
+    width: "40%", 
     height: "55%",
     bottom: "0%",
     position: "absolute",
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "space-between",
     flexDirection: "row",
-    paddingLeft: 5,
+    paddingLeft: 12,
   },
   life: {
     width: "15%",
