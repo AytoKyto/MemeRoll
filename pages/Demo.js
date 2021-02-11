@@ -41,6 +41,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textTransform: "uppercase",
     marginBottom: -40,
+    fontFamily: "GOLDMAN-REGULAR"
+
   },
   tinyLogo: {
     width: 140,

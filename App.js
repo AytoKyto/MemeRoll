@@ -48,9 +48,9 @@ export default function App() {
           inactiveTintColor: "#62CF7E",
         }}
       >
-        <Tab.Screen name="Ajouter" component={Demo} />
         <Tab.Screen name="Favoris" component={Cours} />
-        <Tab.Screen name="Collection" component={Account} />
+        <Tab.Screen name="Ajouter" component={Demo} />
+        <Tab.Screen name="Collection" component={Account} /> 
       </Tab.Navigator>
     </NavigationContainer>
   );
