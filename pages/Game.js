@@ -7,6 +7,7 @@ import {
   Button,
   Alert,
   Text,
+  ImageBackground,
   View,
 } from "react-native";
 
@@ -22,7 +23,15 @@ export default function Game() {
         <Text style={styles.tour}>TOUR</Text>
         <Text style={styles.nbrTour}>4</Text>
       </View>
-      <View style={styles.wrapperGameView}></View>
+      <View style={styles.wrapperGameView}>
+        <ImageBackground
+          source={require("../assets/wall.png")}
+          style={styles.image}
+        ></ImageBackground>
+      <View style={styles.wrapperMainPerso}></View>
+      <View style={styles.wrapperBot}></View>
+      <View style={styles.wrapperWall}></View>
+      </View>
       <View style={styles.wrapperAction}>
         <GameLogic style={styles.gamelogic} choice={"hide"}>
           <View style={styles.wrapperShield}>
@@ -61,6 +70,11 @@ const styles = StyleSheet.create({
   bigWrapper: {
     backgroundColor: "#132E49",
     height: "100%",
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
   logo: {
     width: 100,
@@ -155,4 +169,27 @@ const styles = StyleSheet.create({
   gamelogic: {
     width: "fitContent",
   },
+  wrapperMainPerso: {
+    backgroundColor: "#F00A0A",
+    width: "33%",
+    height: "45%",
+    bottom: "0%",
+    position: "absolute",
+  },
+  wrapperBot: {
+    backgroundColor: "white",
+    width: "33%",
+    height: "45%",
+    position: "absolute",
+    marginLeft: "40%",
+    marginTop: "10%",
+  },
+  wrapperWall: {
+    backgroundColor: "#F00A0A",
+    height: "25%",
+    width: "65%",
+    position: "absolute",
+    right: "0%",
+    marginTop: "40%",
+  }
 });
