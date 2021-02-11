@@ -32,10 +32,10 @@ export default function Cours() {
 
 const styles = StyleSheet.create({
   gifWrapper: {
-    backgroundColor: "grey",
+    backgroundColor: '#808080',
     height: "70%",
     width: "100%",
-    zIndex: "-999",
+    zIndex: -999,
     position: "absolute",
     overflow: "hidden",
   },
