@@ -30,12 +30,10 @@ export default function App() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === "Favoris") {
-              iconName = focused ? "ios-copy" : "ios-copy-outline";
-            } else if (route.name === "Collection") {
-              iconName = focused ? "ios-grid" : "ios-grid-outline";
-            } else if (route.name === "Ajouter") {
-              iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
+            if (route.name === "Game") {
+              iconName = focused ? "ios-skull" : "ios-skull-outline";
+            }  else if (route.name === "Information") {
+              iconName = focused ? "ios-information-circle" : "ios-information-circle-outline";
             }
 
             // You can return any component that you like here!
@@ -43,13 +41,12 @@ export default function App() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: "#62CF7E",
-          inactiveTintColor: "#62CF7E",
+          activeTintColor: "#F00A0A",
+          inactiveTintColor: "#F00A0A",
         }}
       >
-        <Tab.Screen name="Collection" component={Game} /> 
-        <Tab.Screen name="Favoris" component={Cours} />
-        <Tab.Screen name="Ajouter" component={Demo} />
+        <Tab.Screen name="Game" component={Game} /> 
+        <Tab.Screen name="Information" component={Demo} />
       </Tab.Navigator>
     </NavigationContainer>
   );
