@@ -12,6 +12,7 @@ import {
 } from "react-native";
 
 import {GameLogic} from "../components/GameLogic";
+import {Bot} from "../components/Bot";
 
 export default function Game() {
   return (
@@ -23,6 +24,7 @@ export default function Game() {
         <Text style={styles.tour}>TOUR</Text>
         <Text style={styles.nbrTour}>4</Text>
       </View>
+      <Bot />
       <View style={styles.wrapperGameView}>
         <ImageBackground
           source={require("../assets/wall.jpg")}
