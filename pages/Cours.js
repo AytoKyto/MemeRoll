@@ -31,14 +31,7 @@ export default function Cours() {
 }
 
 const styles = StyleSheet.create({
-  gifWrapper: {
-    backgroundColor: '#808080',
-    height: "70%",
-    width: "100%",
-    zIndex: -999,
-    position: "absolute",
-    overflow: "hidden",
-  },
+  
   bigWrapper: {
     backgroundColor: "#161F38",
     height: "100%",
