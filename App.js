@@ -18,7 +18,6 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Demo from "./pages/Demo";
 import Cours from "./pages/Cours";
 import Account from "./pages/Account";
-import SoundModule from "./components/SoundModule";
 
 
 const Tab = createBottomTabNavigator();
