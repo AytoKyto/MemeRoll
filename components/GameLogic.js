@@ -6,17 +6,7 @@ export const GameLogic = (props) => {
 
     const {choice} = props;
 
-    const [playerState, setPlayerState] = useState({
-        life: 3,
-        bullet: 0,
-        hidden:false
-    });
-
-    const [botState, setBotState] = useState({
-        life: 3,
-        bullet: 0,
-        hidden:false
-    });
+  
 
     const [playerAction, setPlayerAction] = useState();
     const [botAction, setBotAction] = useState('hide');

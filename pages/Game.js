@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -12,9 +12,25 @@ import {
 } from "react-native";
 
 import {GameLogic} from "../components/GameLogic";
+import {Heart} from "../components/Heart";
 import {Bot} from "../components/Bot";
 
 export default function Game() {
+
+  const [playerState, setPlayerState] = useState({
+    life: 3 ,
+    bullet: 12,
+    hidden: false
+  });
+
+  const [botState, setBotState] = useState({
+    life: 3,
+    bullet: 12,
+    hidden: false
+  });
+
+
+
   return (
     <View style={styles.bigWrapper}>
       <View style={styles.wrapperLogo}>
@@ -30,28 +46,29 @@ export default function Game() {
           source={require("../assets/wall.jpg")}
           style={styles.image}
         ></ImageBackground>
+
+        {/* joueur*/}
         <View style={styles.wrapperMainPerso}>
           <View style={styles.wrapperLifeBar}>
-            <Image style={styles.life} source={require("../assets/life.png")} />
-            <Image style={styles.life} source={require("../assets/life.png")} />
-            <Image style={styles.life} source={require("../assets/life.png")} />
+            <Heart hearts={playerState.life}/>
             <Image style={styles.life} source={require("../assets/mun.png")} />
-            <Text style={styles.mun}>4</Text>
+            <Text style={styles.mun}>{playerState.bullet}</Text>
           </View>
-        <Image style={styles.imgInBoxMain} source={require("../assets/heroReload.png")} />
+          <Image style={styles.imgInBoxMain} source={require("../assets/heroReload.png")} />
         </View>
+
+        {/* ennemy*/}
         <View style={styles.wrapperBot}>
           <View style={styles.wrapperLifeBar}>
-            <Image style={styles.life} source={require("../assets/life.png")} />
-            <Image style={styles.life} source={require("../assets/life.png")} />
-            <Image style={styles.life} source={require("../assets/life.png")} />
+          <Heart hearts={botState.life}/>
             <Image style={styles.life} source={require("../assets/mun.png")} />
-            <Text style={styles.mun}>4</Text>
+            <Text style={styles.mun}>{botState.bullet}</Text>
           </View>
-        <Image style={styles.imgInBoxMain} source={require("../assets/heroShotRev.png")} />
+          <Image style={styles.imgInBoxMain} source={require("../assets/heroShotRev.png")} />
         </View>
+
         <View style={styles.wrapperWall}>
-        <Image style={styles.imgInBox} source={require("../assets/wallbox.png")} />
+          <Image style={styles.imgInBox} source={require("../assets/wallbox.png")} />
         </View>
       </View>
       <View style={styles.wrapperAction}>
@@ -217,7 +234,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "space-between",
     flexDirection: "row",
-    paddingLeft: 12,
+    paddingLeft: 20,
   },
   life: {
     width: "15%",
