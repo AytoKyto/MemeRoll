@@ -10,8 +10,7 @@ import {
   View,
 } from "react-native";
 
-import GameLogic from '../components/GameLogic';
-
+import GameLogic from "../components/GameLogic";
 
 export default function Game() {
   return (
@@ -25,8 +24,7 @@ export default function Game() {
       </View>
       <View style={styles.wrapperGameView}></View>
       <View style={styles.wrapperAction}>
-
-        <GameLogic style={styles.gamelogic} choice={"hide"}  >
+        <GameLogic style={styles.gamelogic} choice={"hide"}>
           <View style={styles.wrapperShield}>
             <Image
               style={styles.actionLogo}
@@ -36,7 +34,7 @@ export default function Game() {
           </View>
         </GameLogic>
 
-        <GameLogic style={styles.gamelogic} choice={"shot"} >
+        <GameLogic style={styles.gamelogic} choice={"shot"}>
           <View style={styles.wrapperShot}>
             <Image
               style={styles.actionLogo}
@@ -46,7 +44,7 @@ export default function Game() {
           </View>
         </GameLogic>
 
-        <GameLogic style={styles.gamelogic} choice={"reload"} >
+        <GameLogic style={styles.gamelogic} choice={"reload"}>
           <View style={styles.wrapperReload}>
             <Image
               style={styles.actionLogo}
@@ -54,9 +52,8 @@ export default function Game() {
             />
             <Text style={styles.actionName}>Reload</Text>
           </View>
-      </GameLogic>
+        </GameLogic>
       </View>
-
     </View>
   );
 }
@@ -66,13 +63,13 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   logo: {
-    width: 150,
-    height: 80,
+    width: 100,
+    height: 50,
   },
   wrapperLogo: {
     position: "absolute",
     width: "100%",
-    height: "11%",
+    height: "18%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -80,17 +77,17 @@ const styles = StyleSheet.create({
   },
   wrapperGameView: {
     width: "100%",
-    height: "70%",
+    height: "65%",
     backgroundColor: "#707070",
-    marginTop: 85,
+    marginTop: 100,
   },
   wrapperTour: {
     backgroundColor: "white",
     position: "absolute",
     width: "40%",
-    height: "8%",
+    height: "9%",
     display: "flex",
-    marginTop: "15%",
+    marginTop: "20%",
     marginLeft: "80%",
     borderRadius: 2000,
     zIndex: 999,
@@ -104,12 +101,15 @@ const styles = StyleSheet.create({
     color: "#F00A0A",
     marginLeft: "35%",
     marginTop: "-2%",
-    fontSize: 20,
+    fontSize: 25,
   },
   wrapperAction: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     flexDirection: "row",
+    width: "95%",
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   actionLogo: {
     width: "100%",
@@ -125,30 +125,34 @@ const styles = StyleSheet.create({
     color: "white",
   },
   wrapperShield: {
-    width: "25%",
-    height: 180,
+    width: "110%",
+    height: 200,
     borderRadius: 2000,
     backgroundColor: "#F00A0A",
     padding: 10,
     margin: 10,
+  },
+  gamelogic: {
+    width: "50%",
   },
   wrapperShot: {
-    width: "25%",
-    height: 180,
+    width: "155%",
+    height: 200,
     backgroundColor: "#F00A0A",
     borderRadius: 2000,
     padding: 10,
     margin: 10,
+    marginLeft: -5,
   },
   wrapperReload: {
-    width: "25%",
-    height: 180,
+    width: "100%",
+    height: 200,
     backgroundColor: "#F00A0A",
     borderRadius: 2000,
     padding: 10,
     margin: 10,
   },
   gamelogic: {
-    width: "fitContent"
-  }
+    width: "fitContent",
+  },
 });
