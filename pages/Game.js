@@ -35,51 +35,23 @@ export default function Game() {
     Actions(conflict);
   };
 
-  /* 
-  const Actions = (result) => {
-    switch (result) {
-      case 'shot shot':
-        alert("bullets intercepted each other !!");
-        break;
-      case 'shot hide':
-        alert("YOU MISSED !!");
-        break
-      case 'shot reload':
-        alert("Right in the face !");
-        break;
-      case 'reload shot':
-        alert('He got us!');
-        break;
-      case 'reload hide':
-        alert('We got lucky!');
-        break;
-      case 'reload reload':
-        alert(`that's anticlimactic`);
-        break;
-      case 'hide shot':
-        alert("He missed !");
-        break;
-      case 'hide hide':
-        
-        alert('Pussys!')
-        break;
-      case 'hide reload':
-        alert('Watch out !!');
-        break;
-      default:
-        alert(`you clicked on ${playerAction}`);
-    }
-  } */
-
+  let imgMain = "heroHiden.png";
+  let imgBot = "heroReload.png";
   const Actions = () => {
     if (conflict == "shot shot") {
       setPlayerBullet(playerBullet - 1);
       setBotBullet(botBullet - 1);
+      imgMain = "heroShot.png";
+      imgBot = "heroShotRev.png";
       alert("bullets intercepted each other !!");
     } else if (conflict == "hide hide") {
+      imgMain = "heroHiden.png";
+      imgBot = "heroHiden.png";
       alert("Pussys!");
     } else if (conflict == "shot hide") {
       alert("YOU MISSED !!");
+      imgMain = "heroShot.png";
+      imgBot = "heroShotRev.png";
       setPlayerBullet(playerBullet - 1);
     } else if (conflict == "shot reload") {
       alert("Right in the face !");
@@ -132,7 +104,7 @@ export default function Game() {
           </View>
           <Image
             style={styles.imgInBoxMain}
-            source={require("../assets/heroReload.png")}
+            source={require("../assets/heroHiden.png")}
           />
         </View>
 
@@ -147,7 +119,7 @@ export default function Game() {
           </View>
           <Image
             style={styles.imgInBoxMain}
-            source={require("../assets/heroShotRev.png")}
+            source={require("../assets/heroReload.png")}
           />
         </View>
 
