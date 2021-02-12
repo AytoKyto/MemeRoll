@@ -22,10 +22,12 @@ export default function Game() {
   const [botLife, setBotLife] = useState(3);
   const [botBullet, setBotBullet] = useState(0);
   const [isBotHidden, setIsBotHidden] = useState(false);
+  const [botWin, setBotWin] = useState(0)
 
   const [playerAction, setPlayerAction] = useState();
   const [botAction, setBotAction] = useState();
   const conflict = `${playerAction} ${botAction}`;
+  const [playerWin, setPlayerWin] = useState(0)
 
   const BotAction = () => {
     let hide = 1;
@@ -84,7 +86,7 @@ export default function Game() {
     // }
   };
 
-  
+
 
   const imgMain = () => {
     if (playerAction == "hide") {
@@ -111,7 +113,7 @@ export default function Game() {
     }
   };
 
-  
+
 
   const imgBot = () => {
     if (botAction == "hide") {
@@ -139,25 +141,37 @@ export default function Game() {
   };
 
   const isGameFinished = () => {
-    if (playerLife === 0 || botLife === 0) {
-      alert("ONE OF YOU DESERVED TO DIE!!!");
+    if (playerLife === 0) {
+      alert("YOU DESERVED TO DIE!!!");
       setRound(round + 1);
       setBotLife(3);
       setBotBullet(0);
       setPlayerLife(3);
       setPlayerBullet(0);
+      setBotWin(botWin + 1);
     }
-    else if(round == 3){
-      alert("Violence shall end ... unless ...")
+    else if (botLife === 0) {
+      alert("HE DIED OF DEATH!!!");
+      setRound(round + 1);
+      setBotLife(3);
+      setBotBullet(0);
+      setPlayerLife(3);
+      setPlayerBullet(0);
+      setPlayerWin(playerWin + 1);
+    }
+    else if (round === 4) {
+      botWin < playerWin ? alert(`You won by ${playerWin} to ${botWin}`) : alert(`You lose by ${botWin} to ${playerWin}`)
       setRound(1);
       setBotLife(3);
       setBotBullet(0);
       setPlayerLife(3);
       setPlayerBullet(0);
+      setPlayerWin(0);
+      setBotWin(0);
 
     }
   }
-     
+
   const oskour = (choice) => {
     BotAction();
     Actions(conflict);
@@ -170,7 +184,7 @@ export default function Game() {
       <View style={styles.wrapperLogo}>
         <Image style={styles.logo} source={require("../assets/logo.png")} />
       </View>
-      <View style={styles.wrapperTour}>
+      <View style={styles.wrapperTour} >
         <Text style={styles.tour}>Round</Text>
         <Text style={styles.nbrTour}>{round}</Text>
       </View>
