@@ -36,58 +36,107 @@ export default function Game() {
 
     if (RandomNumber == hide) {
       setBotAction("hide");
-      alert(botAction);
+      // alert(botAction);
     } else if (RandomNumber == shot) {
       setBotAction("shot");
-      alert(botAction);
+      // alert(botAction);
     } else if (RandomNumber == reload) {
       setBotAction("reload");
-      alert(botAction);
+      // alert(botAction);
+    } else if (botBullet == 0) {
+      setBotAction("hide");
+      // alert(botAction);
     } else {
       alert("error");
     }
-  }
+  };
 
-
-  let imgMain = "heroHiden.png";
-  let imgBot = "heroReload.png";
   const Actions = () => {
     if (conflict == "shot shot") {
       setPlayerBullet(playerBullet - 1);
       setBotBullet(botBullet - 1);
-      imgMain = "heroShot.png";
-      imgBot = "heroShotRev.png";
-      alert("bullets intercepted each other !!");
+      // alert("bullets intercepted each other !!");
     } else if (conflict == "hide hide") {
-      imgMain = "heroHiden.png";
-      imgBot = "heroHiden.png";
-      alert("Pussys!");
+      // alert("Pussys!");
     } else if (conflict == "shot hide") {
-      alert("YOU MISSED !!");
-      imgMain = "heroShot.png";
-      imgBot = "heroShotRev.png";
+      // alert("YOU MISSED !!");
       setPlayerBullet(playerBullet - 1);
     } else if (conflict == "shot reload") {
-      setPlayerLife(playerLife - 1);
-    } else if (conflict == "reload shot") {
-      alert("He got us!");
+      setPlayerBullet(playerBullet - 1);
+      setBotBullet(botBullet + 1);
       setBotLife(botLife - 1);
+    } else if (conflict == "reload shot") {
+      // alert("He got us!");
+      setBotBullet(botBullet - 1);
+      setPlayerLife(playerLife - 1);
       setPlayerBullet(playerBullet + 1);
     } else if (conflict == "reload hide") {
       setPlayerBullet(playerBullet + 1);
     } else if (conflict == "reload reload") {
-      alert(`that's anticlimactic`);
+      // alert(`that's anticlimactic`);
       setPlayerBullet(playerBullet + 1);
       setBotBullet(botBullet + 1);
     } else if (conflict == "hide shot") {
-      alert("He missed !");
+      // alert("He missed !");
       setBotBullet(botBullet - 1);
     } else if (conflict == "hide reload") {
       setBotBullet(botBullet + 1);
-    }
-
-    else {
+    } else {
       alert(`you clicked on ${playerAction}`);
+    }
+  };
+
+  
+
+  const imgMain = () => {
+    if (playerAction == "hide") {
+      return (
+        <Image
+          style={styles.imgInBoxMain}
+          source={require("../assets/heroHiden.png")}
+        />
+      );
+    } else if (playerAction == "shot") {
+      return (
+        <Image
+          style={styles.imgInBoxMain}
+          source={require("../assets/heroShot.png")}
+        />
+      );
+    } else if (playerAction == "reload") {
+      return (
+        <Image
+          style={styles.imgInBoxMain}
+          source={require("../assets/heroReload.png")}
+        />
+      );
+    }
+  };
+
+  
+
+  const imgBot = () => {
+    if (botAction == "hide") {
+      return (
+        <Image
+          style={styles.imgInBoxMain}
+          source={require("../assets/heroHiden.png")}
+        />
+      );
+    } else if (botAction == "shot") {
+      return (
+        <Image
+          style={styles.imgInBoxMain}
+          source={require("../assets/heroShotRev.png")}
+        />
+      );
+    } else if (botAction == "reload") {
+      return (
+        <Image
+          style={styles.imgInBoxMain}
+          source={require("../assets/heroReload.png")}
+        />
+      );
     }
   };
 
@@ -96,13 +145,14 @@ export default function Game() {
       alert("ONE OF YOU DESERVED TO DIE!!!");
     }
   }
-
+     
   const oskour = (choice) => {
     BotAction();
     Actions(conflict);
     setPlayerAction(choice);
     isGameFinished();
   };
+
   return (
     <View style={styles.bigWrapper}>
       <View style={styles.wrapperLogo}>
@@ -128,10 +178,11 @@ export default function Game() {
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun}>{playerBullet}</Text>
           </View>
-          <Image
+          {/* <Image
             style={styles.imgInBoxMain}
             source={require("../assets/heroHiden.png")}
-          />
+          /> */}
+          {imgMain()}
         </View>
 
         {/* ennemy*/}
@@ -143,10 +194,11 @@ export default function Game() {
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun2}>{botBullet}</Text>
           </View>
-          <Image
+          {/* <Image
             style={styles.imgInBoxMain}
             source={require("../assets/heroReload.png")}
-          />
+          /> */}
+          {imgBot()}
         </View>
 
         <View style={styles.wrapperWall}>
@@ -167,7 +219,7 @@ export default function Game() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => oskour('shot')}>
+        <TouchableOpacity onPress={() => oskour("shot")}>
           <View style={styles.wrapperShot}>
             <Image
               style={styles.actionLogo}
@@ -357,4 +409,5 @@ const styles = StyleSheet.create({
     width: "100%",
     resizeMode: "contain",
   },
-});
+})
+
