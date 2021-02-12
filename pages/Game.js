@@ -16,11 +16,11 @@ export default function Game() {
   const [round, setRound] = useState(1);
 
   const [playerLife, setPlayerLife] = useState(3);
-  const [playerBullet, setPlayerBullet] = useState(0);
+  const [playerBullet, setPlayerBullet] = useState(1);
   const [isHidden, setIsHidden] = useState(false);
 
   const [botLife, setBotLife] = useState(3);
-  const [botBullet, setBotBullet] = useState(0);
+  const [botBullet, setBotBullet] = useState(1);
   const [isBotHidden, setIsBotHidden] = useState(false);
 
   const [playerAction, setPlayerAction] = useState();
@@ -36,16 +36,12 @@ export default function Game() {
 
     if (RandomNumber == hide) {
       setBotAction("hide");
-      // alert(botAction);
     } else if (botBullet == 0) {
       setBotAction("reload");
-      // alert(botAction);
     } else if (RandomNumber == reload) {
       setBotAction("reload");
-      // alert(botAction);
     } else if (RandomNumber == shot) {
       setBotAction("shot");
-      // alert(botAction);
     } else {
       alert("error");
     }
@@ -73,18 +69,14 @@ export default function Game() {
       setBotBullet(botBullet + 1);
     } else if (conflict == "hide shot") {
       setBotBullet(botBullet - 1);
+    } else if (playerBullet == 0) {
+      playerAction = "reload";
     } else if (conflict == "hide reload") {
       setBotBullet(botBullet + 1);
     } else {
       // alert(`you clicked on ${playerAction}`);
     }
-
-    // if (playerBullet == 0) {
-    //   playerAction("reload");
-    // }
   };
-
-  
 
   const imgMain = () => {
     if (playerAction == "hide") {
@@ -110,8 +102,6 @@ export default function Game() {
       );
     }
   };
-
-  
 
   const imgBot = () => {
     if (botAction == "hide") {
@@ -143,21 +133,19 @@ export default function Game() {
       alert("ONE OF YOU DESERVED TO DIE!!!");
       setRound(round + 1);
       setBotLife(3);
-      setBotBullet(0);
+      setBotBullet(1);
       setPlayerLife(3);
-      setPlayerBullet(0);
-    }
-    else if(round == 3){
-      alert("Violence shall end ... unless ...")
+      setPlayerBullet(1);
+    } else if (round == 3) {
+      alert("Violence shall end ... unless ...");
       setRound(1);
       setBotLife(3);
       setBotBullet(0);
       setPlayerLife(3);
       setPlayerBullet(0);
-
     }
-  }
-     
+  };
+
   const oskour = (choice) => {
     BotAction();
     Actions(conflict);
@@ -413,5 +401,4 @@ const styles = StyleSheet.create({
     width: "100%",
     resizeMode: "contain",
   },
-})
-
+});
