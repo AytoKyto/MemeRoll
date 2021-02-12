@@ -36,18 +36,55 @@ export default function Game() {
 
     if (RandomNumber == hide) {
       setBotAction("hide");
-      alert(botAction);
+      // alert(botAction);
     } else if (RandomNumber == shot) {
       setBotAction("shot");
-      alert(botAction);
+      // alert(botAction);
     } else if (RandomNumber == reload) {
       setBotAction("reload");
-      alert(botAction);
+      // alert(botAction);
+    } else if (botBullet == 0) {
+      setBotAction("hide");
+      // alert(botAction);
     } else {
       alert("error");
     }
-  }
+  };
 
+  const Actions = () => {
+    if (conflict == "shot shot") {
+      setPlayerBullet(playerBullet - 1);
+      setBotBullet(botBullet - 1);
+      // alert("bullets intercepted each other !!");
+    } else if (conflict == "hide hide") {
+      // alert("Pussys!");
+    } else if (conflict == "shot hide") {
+      // alert("YOU MISSED !!");
+      setPlayerBullet(playerBullet - 1);
+    } else if (conflict == "shot reload") {
+      setPlayerBullet(playerBullet - 1);
+      setBotBullet(botBullet + 1);
+      setPlayerLife(botLife - 1);
+    } else if (conflict == "reload shot") {
+      // alert("He got us!");
+      setBotBullet(botBullet - 1);
+      setBotLife(playerLife - 1);
+      setPlayerBullet(playerBullet + 1);
+    } else if (conflict == "reload hide") {
+      setPlayerBullet(playerBullet + 1);
+    } else if (conflict == "reload reload") {
+      // alert(`that's anticlimactic`);
+      setPlayerBullet(playerBullet + 1);
+      setBotBullet(botBullet + 1);
+    } else if (conflict == "hide shot") {
+      // alert("He missed !");
+      setBotBullet(botBullet - 1);
+    } else if (conflict == "hide reload") {
+      setBotBullet(botBullet + 1);
+    } else {
+      alert(`you clicked on ${playerAction}`);
+    }
+  };
 
   const imgMain = () => {
     if (playerAction == "hide") {
@@ -71,7 +108,7 @@ export default function Game() {
           source={require("../assets/heroReload.png")}
         />
       );
-    } 
+    }
   };
 
   const imgBot = () => {
@@ -98,51 +135,12 @@ export default function Game() {
       );
     }
   };
-
-  const Actions = () => {
-    if (conflict == "shot shot") {
-      setPlayerBullet(playerBullet - 1);
-      setBotBullet(botBullet - 1);
-      alert("bullets intercepted each other !!");
-    } else if (conflict == "hide hide") {
-      alert("Pussys!");
-    } else if (conflict == "shot hide") {
-      alert("YOU MISSED !!");
-      setPlayerBullet(playerBullet - 1);
-    } else if (conflict == "shot reload") {
-      setPlayerBullet(playerBullet - 1);
-      setBotBullet(botBullet + 1);
-      setPlayerLife(playerLife - 1);
-    } else if (conflict == "reload shot") {
-      alert("He got us!");
-      setBotBullet(botBullet - 1);
-      setBotLife(botLife - 1);
-      setPlayerBullet(playerBullet + 1);
-    } else if (conflict == "reload hide") {
-      setPlayerBullet(playerBullet + 1);
-    } else if (conflict == "reload reload") {
-      alert(`that's anticlimactic`);
-      setPlayerBullet(playerBullet + 1);
-      setBotBullet(botBullet + 1);
-    } else if (conflict == "hide shot") {
-      alert("He missed !");
-      setBotBullet(botBullet - 1);
-    } else if (conflict == "hide reload") {
-      setBotBullet(botBullet + 1);
-    }
-
-    else {
-      alert(`you clicked on ${playerAction}`);
+  const isGameFinished = () => {
+    if (playerLife || botLife === 0) {
+      alert("ONE OF YOU DESERVED TO DIE!!!");
+      setRound(round + 1);
     }
   };
-
-  const isGameFinished =()=>{
-    if(playerLife || botLife ===0){
-      alert("ONE OF YOU DESERVED TO DIE!!!");
-      setRound(round +1);
-
-    }
-  }
 
   const oskour = (choice) => {
     BotAction();
@@ -156,7 +154,7 @@ export default function Game() {
       </View>
       <View style={styles.wrapperTour}>
         <Text style={styles.tour}>Round</Text>
-  <Text style={styles.nbrTour}>{round}</Text>
+        <Text style={styles.nbrTour}>{round}</Text>
       </View>
       <Bot />
       <View style={styles.wrapperGameView}>
@@ -215,7 +213,7 @@ export default function Game() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => oskour('shot')}>
+        <TouchableOpacity onPress={() => oskour("shot")}>
           <View style={styles.wrapperShot}>
             <Image
               style={styles.actionLogo}
