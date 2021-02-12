@@ -13,83 +13,96 @@ import { Heart } from "../components/Heart";
 import { Bot } from "../components/Bot";
 
 export default function Game() {
-  const [playerLife, setPlayerLife]=useState(3);
-  const [playerBullet, setPlayerBullet]=useState(1);
-  const [isHidden, setIsHidden] =useState(false);
+  const [round, setRound] = useState(1);
 
-  const [botLife, setBotLife]=useState(3);
-  const [botBullet, setBotBullet]=useState(2);
-  const [isBotHidden, setIsBotHidden] =useState(false);
+  const [playerLife, setPlayerLife] = useState(3);
+  const [playerBullet, setPlayerBullet] = useState(2);
+  const [isHidden, setIsHidden] = useState(false);
+
+  const [botLife, setBotLife] = useState(3);
+  const [botBullet, setBotBullet] = useState(2);
+  const [isBotHidden, setIsBotHidden] = useState(false);
 
   const [playerAction, setPlayerAction] = useState();
-  const [botAction, setBotAction] = useState('hide');
+  const [botAction, setBotAction] = useState();
   const conflict = `${playerAction} ${botAction}`;
 
+  const BotAction = () => {
+    let hide = 1;
+    let shot = 2;
+    let reload = 3;
+
+    var RandomNumber = Math.floor(Math.random() * 3) + 1;
+
+    if (RandomNumber == hide) {
+      setBotAction("hide");
+      alert(botAction);
+    } else if (RandomNumber == shot) {
+      setBotAction("shot");
+      alert(botAction);
+    } else if (RandomNumber == reload) {
+      setBotAction("reload");
+      alert(botAction);
+    } else {
+      alert("error");
+    }
+  }
+
+
+  const Actions = () => {
+    if (conflict == "shot shot") {
+      setPlayerBullet(playerBullet - 1);
+      setBotBullet(botBullet - 1);
+      alert("bullets intercepted each other !!");
+    } else if (conflict == "hide hide") {
+      alert("Pussys!");
+    } else if (conflict == "shot hide") {
+      setPlayerBullet(playerBullet - 1);
+    } else if (conflict == "shot reload") {
+      setPlayerLife(playerLife - 1);
+    } else if (conflict == "reload shot") {
+      alert("He got us!");
+      setBotLife(botLife - 1);
+      setPlayerBullet(playerBullet + 1);
+    } else if (conflict == "reload hide") {
+      setPlayerBullet(playerBullet + 1);
+    } else if (conflict == "reload reload") {
+      alert(`that's anticlimactic`);
+      setPlayerBullet(playerBullet + 1);
+      setBotBullet(botBullet + 1);
+    } else if (conflict == "hide shot") {
+      alert("He missed !");
+      setBotBullet(botBullet - 1);
+    } else if (conflict == "hide reload") {
+      setBotBullet(botBullet + 1);
+    }
+
+    else {
+      alert(`you clicked on ${playerAction}`);
+    }
+  };
+
+  const isGameFinished =()=>{
+    if(playerLife || botLife ===0){
+      alert("ONE OF YOU DESERVED TO DIE!!!");
+      setRound(round +1);
+
+    }
+  }
 
   const oskour = (choice) => {
-    setPlayerAction(choice);
+    BotAction();
     Actions(conflict);
-  }
-
-  useEffect(() => {
-    setPlayerAction();
-  }, [Actions]);
-
-  /* 
-  const Actions = (result) => {
-    switch (result) {
-      case 'shot shot':
-        alert("bullets intercepted each other !!");
-        break;
-      case 'shot hide':
-        alert("YOU MISSED !!");
-        break
-      case 'shot reload':
-        alert("Right in the face !");
-        break;
-      case 'reload shot':
-        alert('He got us!');
-        break;
-      case 'reload hide':
-        alert('We got lucky!');
-        break;
-      case 'reload reload':
-        alert(`that's anticlimactic`);
-        break;
-      case 'hide shot':
-        alert("He missed !");
-        break;
-      case 'hide hide':
-        
-        alert('Pussys!')
-        break;
-      case 'hide reload':
-        alert('Watch out !!');
-        break;
-      default:
-        alert(`you clicked on ${playerAction}`);
-    }
-  } */
-
-  const Actions =()=>{
-    if (conflict == 'hide hide'){
-      setPlayerBullet(playerBullet + 1);
-    }
-  }
-
-  
- 
-
-
-
+    setPlayerAction(choice);
+  };
   return (
     <View style={styles.bigWrapper}>
       <View style={styles.wrapperLogo}>
         <Image style={styles.logo} source={require("../assets/logo.png")} />
       </View>
       <View style={styles.wrapperTour}>
-        <Text style={styles.tour}>TOUR</Text>
-        <Text style={styles.nbrTour}>4</Text>
+        <Text style={styles.tour}>Round</Text>
+  <Text style={styles.nbrTour}>{round}</Text>
       </View>
       <Bot />
       <View style={styles.wrapperGameView}>
@@ -135,10 +148,9 @@ export default function Game() {
           />
         </View>
       </View>
-      <View style={styles.wrapperAction} >
-
-        <TouchableOpacity onPress={() => oskour('hide')}  >
-          <View style={styles.wrapperShield} >
+      <View style={styles.wrapperAction}>
+        <TouchableOpacity onPress={() => oskour("hide")}>
+          <View style={styles.wrapperShield}>
             <Image
               style={styles.actionLogo}
               source={require("../assets/shield.png")}
@@ -147,7 +159,7 @@ export default function Game() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => oskour('shot')}  >
+        <TouchableOpacity onPress={() => oskour('shot')}>
           <View style={styles.wrapperShot}>
             <Image
               style={styles.actionLogo}
@@ -157,7 +169,7 @@ export default function Game() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => oskour('reload')}  >
+        <TouchableOpacity onPress={() => oskour("reload")}>
           <View style={styles.wrapperReload}>
             <Image
               style={styles.actionLogo}
@@ -166,7 +178,6 @@ export default function Game() {
             <Text style={styles.actionName}>Reload</Text>
           </View>
         </TouchableOpacity>
-
       </View>
     </View>
   );
@@ -279,6 +290,7 @@ const styles = StyleSheet.create({
     height: "55%",
     bottom: "0%",
     position: "absolute",
+    zIndex: 999,
   },
   wrapperBot: {
     width: "40%",
