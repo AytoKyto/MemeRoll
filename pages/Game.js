@@ -16,11 +16,11 @@ export default function Game() {
   const [round, setRound] = useState(1);
 
   const [playerLife, setPlayerLife] = useState(3);
-  const [playerBullet, setPlayerBullet] = useState(2);
+  const [playerBullet, setPlayerBullet] = useState(0);
   const [isHidden, setIsHidden] = useState(false);
 
   const [botLife, setBotLife] = useState(3);
-  const [botBullet, setBotBullet] = useState(2);
+  const [botBullet, setBotBullet] = useState(0);
   const [isBotHidden, setIsBotHidden] = useState(false);
 
   const [playerAction, setPlayerAction] = useState();
@@ -55,34 +55,28 @@ export default function Game() {
     if (conflict == "shot shot") {
       setPlayerBullet(playerBullet - 1);
       setBotBullet(botBullet - 1);
-      // alert("bullets intercepted each other !!");
     } else if (conflict == "hide hide") {
-      // alert("Pussys!");
     } else if (conflict == "shot hide") {
-      // alert("YOU MISSED !!");
       setPlayerBullet(playerBullet - 1);
     } else if (conflict == "shot reload") {
       setPlayerBullet(playerBullet - 1);
       setBotBullet(botBullet + 1);
       setBotLife(botLife - 1);
     } else if (conflict == "reload shot") {
-      // alert("He got us!");
       setBotBullet(botBullet - 1);
       setPlayerLife(playerLife - 1);
       setPlayerBullet(playerBullet + 1);
     } else if (conflict == "reload hide") {
       setPlayerBullet(playerBullet + 1);
     } else if (conflict == "reload reload") {
-      // alert(`that's anticlimactic`);
       setPlayerBullet(playerBullet + 1);
       setBotBullet(botBullet + 1);
     } else if (conflict == "hide shot") {
-      // alert("He missed !");
       setBotBullet(botBullet - 1);
     } else if (conflict == "hide reload") {
       setBotBullet(botBullet + 1);
     } else {
-      alert(`you clicked on ${playerAction}`);
+      // alert(`you clicked on ${playerAction}`);
     }
 
     // if (playerBullet == 0) {
