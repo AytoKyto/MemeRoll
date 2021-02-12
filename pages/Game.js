@@ -90,6 +90,8 @@ export default function Game() {
     // }
   };
 
+  
+
   const imgMain = () => {
     if (playerAction == "hide") {
       return (
@@ -115,6 +117,8 @@ export default function Game() {
     }
   };
 
+  
+
   const imgBot = () => {
     if (botAction == "hide") {
       return (
@@ -139,18 +143,20 @@ export default function Game() {
       );
     }
   };
-  const isGameFinished = () => {
-    if (playerLife || botLife === 0) {
-      alert("ONE OF YOU DESERVED TO DIE!!!");
-      setRound(round + 1);
-    }
-  };
 
+  const isGameFinished = () => {
+    if (playerLife === 0 || botLife === 0) {
+      alert("ONE OF YOU DESERVED TO DIE!!!");
+    }
+  }
+     
   const oskour = (choice) => {
     BotAction();
     Actions(conflict);
     setPlayerAction(choice);
+    isGameFinished();
   };
+
   return (
     <View style={styles.bigWrapper}>
       <View style={styles.wrapperLogo}>
@@ -407,4 +413,5 @@ const styles = StyleSheet.create({
     width: "100%",
     resizeMode: "contain",
   },
-});
+})
+
