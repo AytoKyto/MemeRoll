@@ -26,9 +26,14 @@ export default function Game() {
   const [botAction, setBotAction] = useState("hide");
   const conflict = `${playerAction} ${botAction}`;
 
+useEffect(() => {
+    setPlayerAction();
+  }, [Actions]);
+
   const oskour = (choice) => {
     setPlayerAction(choice);
     Actions(conflict);
+<<<<<<< HEAD
   };
 
   useEffect(() => {
@@ -41,8 +46,52 @@ export default function Game() {
       setBotBullet(botBullet - 1);
      } else if (conflict == 'hide hide'){
      setPlayerBullet(playerBullet + 1);
+=======
+  }
+
+  /* 
+  const Actions = (result) => {
+    switch (result) {
+      case 'shot shot':
+        alert("bullets intercepted each other !!");
+        break;
+      case 'shot hide':
+        alert("YOU MISSED !!");
+        break
+      case 'shot reload':
+        alert("Right in the face !");
+        break;
+      case 'reload shot':
+        alert('He got us!');
+        break;
+      case 'reload hide':
+        alert('We got lucky!');
+        break;
+      case 'reload reload':
+        alert(`that's anticlimactic`);
+        break;
+      case 'hide shot':
+        alert("He missed !");
+        break;
+      case 'hide hide':
+        
+        alert('Pussys!')
+        break;
+      case 'hide reload':
+        alert('Watch out !!');
+        break;
+      default:
+        alert(`you clicked on ${playerAction}`);
+>>>>>>> f909ac2470e5874585ab8ea1463a7f30076e4c5d
+    }
+  } */
+
+  const Actions =()=>{
+    if (conflict == 'hide hide'){
+      setPlayerBullet(playerBullet + 1);
     }
   }
+<<<<<<< HEAD
   // const Actions = (result) => {
   //   switch (result) {
   //     case "shot shot":
@@ -77,6 +126,13 @@ export default function Game() {
   //       alert(`you clicked on ${playerAction}`);
   //   }
   // };
+=======
+
+  
+ 
+>>>>>>> f909ac2470e5874585ab8ea1463a7f30076e4c5d
+
+
 
   return (
     <View style={styles.bigWrapper}>
@@ -98,10 +154,17 @@ export default function Game() {
         <View style={styles.wrapperMainPerso}>
           <View style={styles.wrapperLifeBar}>
             <View style={styles.wrapperHeart}>
+<<<<<<< HEAD
               <Heart hearts={playerLife.life} />
             </View>
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun}>{playerBullet.bullet}</Text>
+=======
+              <Heart hearts={playerLife} />
+            </View>
+            <Image style={styles.life} source={require("../assets/mun.png")} />
+            <Text style={styles.mun}>{playerBullet}</Text>
+>>>>>>> f909ac2470e5874585ab8ea1463a7f30076e4c5d
           </View>
           <Image
             style={styles.imgInBoxMain}
@@ -113,10 +176,17 @@ export default function Game() {
         <View style={styles.wrapperBot}>
           <View style={styles.wrapperLifeBar}>
             <View style={styles.wrapperHeart}>
+<<<<<<< HEAD
               <Heart hearts={botLife.life} />
             </View>
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun2}>{botBullet.bullet}</Text>
+=======
+              <Heart hearts={botLife} />
+            </View>
+            <Image style={styles.life} source={require("../assets/mun.png")} />
+            <Text style={styles.mun2}>{botBullet}</Text>
+>>>>>>> f909ac2470e5874585ab8ea1463a7f30076e4c5d
           </View>
           <Image
             style={styles.imgInBoxMain}
