@@ -9,11 +9,12 @@ import {
   View,
 } from "react-native";
 
-import { GameLogic } from "../components/GameLogic";
 import { Heart } from "../components/Heart";
 import { Bot } from "../components/Bot";
 
 export default function Game() {
+  const [round, setRound] = useState(1);
+
   const [playerLife, setPlayerLife] = useState(3);
   const [playerBullet, setPlayerBullet] = useState(2);
   const [isHidden, setIsHidden] = useState(false);
@@ -23,17 +24,30 @@ export default function Game() {
   const [isBotHidden, setIsBotHidden] = useState(false);
 
   const [playerAction, setPlayerAction] = useState();
-  const [botAction, setBotAction] = useState("hide");
+  const [botAction, setBotAction] = useState();
   const conflict = `${playerAction} ${botAction}`;
 
-  useEffect(() => {
-    setPlayerAction();
-  }, [Actions]);
+  const BotAction = () => {
+    let hide = 1;
+    let shot = 2;
+    let reload = 3;
 
-  const oskour = (choice) => {
-    setPlayerAction(choice);
-    Actions(conflict);
-  };
+    var RandomNumber = Math.floor(Math.random() * 3) + 1;
+
+    if (RandomNumber == hide) {
+      setBotAction("hide");
+      alert(botAction);
+    } else if (RandomNumber == shot) {
+      setBotAction("shot");
+      alert(botAction);
+    } else if (RandomNumber == reload) {
+      setBotAction("reload");
+      alert(botAction);
+    } else {
+      alert("error");
+    }
+  }
+
 
   const imgMain = () => {
     if (playerAction == "hide") {
@@ -96,13 +110,12 @@ export default function Game() {
       alert("YOU MISSED !!");
       setPlayerBullet(playerBullet - 1);
     } else if (conflict == "shot reload") {
-      alert("Right in the face !");
       setPlayerLife(playerLife - 1);
     } else if (conflict == "reload shot") {
       alert("He got us!");
       setBotLife(botLife - 1);
+      setPlayerBullet(playerBullet + 1);
     } else if (conflict == "reload hide") {
-      alert("We got lucky!");
       setPlayerBullet(playerBullet + 1);
     } else if (conflict == "reload reload") {
       alert(`that's anticlimactic`);
@@ -112,21 +125,35 @@ export default function Game() {
       alert("He missed !");
       setBotBullet(botBullet - 1);
     } else if (conflict == "hide reload") {
-      alert("Watch out !!");
       setBotBullet(botBullet + 1);
-    } else {
+    }
+
+    else {
       alert(`you clicked on ${playerAction}`);
     }
   };
 
+  const isGameFinished =()=>{
+    if(playerLife || botLife ===0){
+      alert("ONE OF YOU DESERVED TO DIE!!!");
+      setRound(round +1);
+
+    }
+  }
+
+  const oskour = (choice) => {
+    BotAction();
+    Actions(conflict);
+    setPlayerAction(choice);
+  };
   return (
     <View style={styles.bigWrapper}>
       <View style={styles.wrapperLogo}>
         <Image style={styles.logo} source={require("../assets/logo.png")} />
       </View>
       <View style={styles.wrapperTour}>
-        <Text style={styles.tour}>TOUR</Text>
-        <Text style={styles.nbrTour}>4</Text>
+        <Text style={styles.tour}>Round</Text>
+  <Text style={styles.nbrTour}>{round}</Text>
       </View>
       <Bot />
       <View style={styles.wrapperGameView}>
@@ -185,7 +212,7 @@ export default function Game() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => oskour("shot")}>
+        <TouchableOpacity onPress={() => oskour('shot')}>
           <View style={styles.wrapperShot}>
             <Image
               style={styles.actionLogo}
