@@ -110,9 +110,12 @@ export default function Game() {
       alert("YOU MISSED !!");
       setPlayerBullet(playerBullet - 1);
     } else if (conflict == "shot reload") {
+      setPlayerBullet(playerBullet - 1);
+      setBotBullet(botBullet + 1);
       setPlayerLife(playerLife - 1);
     } else if (conflict == "reload shot") {
       alert("He got us!");
+      setBotBullet(botBullet - 1);
       setBotLife(botLife - 1);
       setPlayerBullet(playerBullet + 1);
     } else if (conflict == "reload hide") {
