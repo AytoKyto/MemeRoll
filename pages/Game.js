@@ -35,23 +35,65 @@ export default function Game() {
     Actions(conflict);
   };
 
-  let imgMain = "heroHiden.png";
-  let imgBot = "heroReload.png";
+  const imgMain = () => {
+    if (playerAction == "hide") {
+      return (
+        <Image
+          style={styles.imgInBoxMain}
+          source={require("../assets/heroHiden.png")}
+        />
+      );
+    } else if (playerAction == "shot") {
+      return (
+        <Image
+          style={styles.imgInBoxMain}
+          source={require("../assets/heroShot.png")}
+        />
+      );
+    } else if (playerAction == "reload") {
+      return (
+        <Image
+          style={styles.imgInBoxMain}
+          source={require("../assets/heroReload.png")}
+        />
+      );
+    } 
+  };
+
+  const imgBot = () => {
+    if (botAction == "hide") {
+      return (
+        <Image
+          style={styles.imgInBoxMain}
+          source={require("../assets/heroHiden.png")}
+        />
+      );
+    } else if (botAction == "shot") {
+      return (
+        <Image
+          style={styles.imgInBoxMain}
+          source={require("../assets/heroShotRev.png")}
+        />
+      );
+    } else if (botAction == "reload") {
+      return (
+        <Image
+          style={styles.imgInBoxMain}
+          source={require("../assets/heroReload.png")}
+        />
+      );
+    }
+  };
+
   const Actions = () => {
     if (conflict == "shot shot") {
       setPlayerBullet(playerBullet - 1);
       setBotBullet(botBullet - 1);
-      imgMain = "heroShot.png";
-      imgBot = "heroShotRev.png";
       alert("bullets intercepted each other !!");
     } else if (conflict == "hide hide") {
-      imgMain = "heroHiden.png";
-      imgBot = "heroHiden.png";
       alert("Pussys!");
     } else if (conflict == "shot hide") {
       alert("YOU MISSED !!");
-      imgMain = "heroShot.png";
-      imgBot = "heroShotRev.png";
       setPlayerBullet(playerBullet - 1);
     } else if (conflict == "shot reload") {
       alert("Right in the face !");
@@ -102,10 +144,11 @@ export default function Game() {
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun}>{playerBullet}</Text>
           </View>
-          <Image
+          {/* <Image
             style={styles.imgInBoxMain}
             source={require("../assets/heroHiden.png")}
-          />
+          /> */}
+          {imgMain()}
         </View>
 
         {/* ennemy*/}
@@ -117,10 +160,11 @@ export default function Game() {
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun2}>{botBullet}</Text>
           </View>
-          <Image
+          {/* <Image
             style={styles.imgInBoxMain}
             source={require("../assets/heroReload.png")}
-          />
+          /> */}
+          {imgBot()}
         </View>
 
         <View style={styles.wrapperWall}>
