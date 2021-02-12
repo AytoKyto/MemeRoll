@@ -143,6 +143,20 @@ export default function Game() {
   const isGameFinished = () => {
     if (playerLife === 0 || botLife === 0) {
       alert("ONE OF YOU DESERVED TO DIE!!!");
+      setRound(round + 1);
+      setBotLife(3);
+      setBotBullet(0);
+      setPlayerLife(3);
+      setPlayerBullet(0);
+    }
+    else if(round == 3){
+      alert("Violence shall end ... unless ...")
+      setRound(1);
+      setBotLife(3);
+      setBotBullet(0);
+      setPlayerLife(3);
+      setPlayerBullet(0);
+
     }
   }
      
@@ -178,10 +192,6 @@ export default function Game() {
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun}>{playerBullet}</Text>
           </View>
-          {/* <Image
-            style={styles.imgInBoxMain}
-            source={require("../assets/heroHiden.png")}
-          /> */}
           {imgMain()}
         </View>
 
@@ -194,10 +204,6 @@ export default function Game() {
             <Image style={styles.life} source={require("../assets/mun.png")} />
             <Text style={styles.mun2}>{botBullet}</Text>
           </View>
-          {/* <Image
-            style={styles.imgInBoxMain}
-            source={require("../assets/heroReload.png")}
-          /> */}
           {imgBot()}
         </View>
 
