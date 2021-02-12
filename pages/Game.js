@@ -9,83 +9,70 @@ import {
   View,
 } from "react-native";
 
-<<<<<<< HEAD
-import { Heart } from "../components/Heart";
-
-=======
 import { GameLogic } from "../components/GameLogic";
 import { Heart } from "../components/Heart";
 import { Bot } from "../components/Bot";
->>>>>>> a3690317b095d5b4335d66aa7939b1d096b40f63
 
 export default function Game() {
   const [playerState, setPlayerState] = useState({
     life: 3,
-<<<<<<< HEAD
-    bullet: 12,
-    hidden: false
-=======
-    bullet: 2,
+    bullet: 0,
     hidden: false,
->>>>>>> a3690317b095d5b4335d66aa7939b1d096b40f63
   });
 
   const [botState, setBotState] = useState({
     life: 3,
-    bullet: 1,
+    bullet: 0,
     hidden: false,
   });
 
   const [playerAction, setPlayerAction] = useState();
-  const [botAction, setBotAction] = useState('hide');
+  const [botAction, setBotAction] = useState("hide");
   const conflict = `${playerAction} ${botAction}`;
 
   const oskour = (choice) => {
     setPlayerAction(choice);
     Actions(conflict);
-  }
+  };
 
-    useEffect(() => {
-      setPlayerAction()
-    }, []);
-  
-
+  useEffect(() => {
+    setPlayerAction();
+  }, []);
 
   const Actions = (result) => {
     switch (result) {
-      case 'shot shot':
+      case "shot shot":
         alert("bullets intercepted each other !!");
         break;
-      case 'shot hide':
+      case "shot hide":
         alert("YOU MISSED !!");
-        break
-      case 'shot reload':
+        setPlayerState( bullet - 1 );
+        break;
+      case "shot reload":
         alert("Right in the face !");
         break;
-      case 'reload shot':
-        alert('He got us!');
+      case "reload shot":
+        alert("He got us!");
         break;
-      case 'reload hide':
-        alert('We got lucky!');
+      case "reload hide":
+        alert("We got lucky!");
         break;
-      case 'reload reload':
+      case "reload reload":
         alert(`that's anticlimactic`);
         break;
-      case 'hide shot':
+      case "hide shot":
         alert("He missed !");
         break;
-      case 'hide hide':
-        alert('Pussys!');
+      case "hide hide":
+        alert("Pussys!");
         break;
-      case 'hide reload':
-        alert('Watch out !!');
+      case "hide reload":
+        alert("Watch out !!");
         break;
       default:
         alert(`you clicked on ${playerAction}`);
     }
-  }
-
- 
+  };
 
   return (
     <View style={styles.bigWrapper}>
@@ -140,10 +127,9 @@ export default function Game() {
           />
         </View>
       </View>
-      <View style={styles.wrapperAction} >
-
-        <TouchableOpacity onPress={() => oskour('hide')}  >
-          <View style={styles.wrapperShield} >
+      <View style={styles.wrapperAction}>
+        <TouchableOpacity onPress={() => oskour("hide")}>
+          <View style={styles.wrapperShield}>
             <Image
               style={styles.actionLogo}
               source={require("../assets/shield.png")}
@@ -152,7 +138,7 @@ export default function Game() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => oskour('shot')}  >
+        <TouchableOpacity onPress={() => oskour("shot")}>
           <View style={styles.wrapperShot}>
             <Image
               style={styles.actionLogo}
@@ -162,7 +148,7 @@ export default function Game() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => oskour('reload')}  >
+        <TouchableOpacity onPress={() => oskour("reload")}>
           <View style={styles.wrapperReload}>
             <Image
               style={styles.actionLogo}
@@ -171,7 +157,6 @@ export default function Game() {
             <Text style={styles.actionName}>Reload</Text>
           </View>
         </TouchableOpacity>
-
       </View>
     </View>
   );
