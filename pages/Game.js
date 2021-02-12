@@ -9,13 +9,12 @@ import {
   View,
 } from "react-native";
 
-import { GameLogic } from "../components/GameLogic";
 import { Heart } from "../components/Heart";
 import { Bot } from "../components/Bot";
 
 export default function Game() {
   const [playerLife, setPlayerLife]=useState(3);
-  const [playerBullet, setPlayerBullet]=useState(2);
+  const [playerBullet, setPlayerBullet]=useState(1);
   const [isHidden, setIsHidden] =useState(false);
 
   const [botLife, setBotLife]=useState(3);
@@ -26,14 +25,15 @@ export default function Game() {
   const [botAction, setBotAction] = useState('hide');
   const conflict = `${playerAction} ${botAction}`;
 
-useEffect(() => {
-    setPlayerAction();
-  }, [Actions]);
 
   const oskour = (choice) => {
     setPlayerAction(choice);
     Actions(conflict);
   }
+
+  useEffect(() => {
+    setPlayerAction();
+  }, [Actions]);
 
   /* 
   const Actions = (result) => {
