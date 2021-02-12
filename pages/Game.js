@@ -9,48 +9,33 @@ import {
   View,
 } from "react-native";
 
-<<<<<<< HEAD
-import { Heart } from "../components/Heart";
-
-=======
 import { GameLogic } from "../components/GameLogic";
 import { Heart } from "../components/Heart";
 import { Bot } from "../components/Bot";
->>>>>>> a3690317b095d5b4335d66aa7939b1d096b40f63
 
 export default function Game() {
-  const [playerState, setPlayerState] = useState({
-    life: 3,
-<<<<<<< HEAD
-    bullet: 12,
-    hidden: false
-=======
-    bullet: 2,
-    hidden: false,
->>>>>>> a3690317b095d5b4335d66aa7939b1d096b40f63
-  });
+  const [playerLife, setPlayerLife]=useState(3);
+  const [playerBullet, setPlayerBullet]=useState(2);
+  const [isHidden, setIsHidden] =useState(false);
 
-  const [botState, setBotState] = useState({
-    life: 3,
-    bullet: 1,
-    hidden: false,
-  });
+  const [botLife, setBotLife]=useState(3);
+  const [botBullet, setBotBullet]=useState(2);
+  const [isBotHidden, setIsBotHidden] =useState(false);
 
   const [playerAction, setPlayerAction] = useState();
   const [botAction, setBotAction] = useState('hide');
   const conflict = `${playerAction} ${botAction}`;
+
+useEffect(() => {
+    setPlayerAction();
+  }, [Actions]);
 
   const oskour = (choice) => {
     setPlayerAction(choice);
     Actions(conflict);
   }
 
-    useEffect(() => {
-      setPlayerAction()
-    }, []);
-  
-
-
+  /* 
   const Actions = (result) => {
     switch (result) {
       case 'shot shot':
@@ -75,7 +60,8 @@ export default function Game() {
         alert("He missed !");
         break;
       case 'hide hide':
-        alert('Pussys!');
+        
+        alert('Pussys!')
         break;
       case 'hide reload':
         alert('Watch out !!');
@@ -83,9 +69,18 @@ export default function Game() {
       default:
         alert(`you clicked on ${playerAction}`);
     }
+  } */
+
+  const Actions =()=>{
+    if (conflict == 'hide hide'){
+      setPlayerBullet(playerBullet + 1);
+    }
   }
 
+  
  
+
+
 
   return (
     <View style={styles.bigWrapper}>
@@ -107,10 +102,10 @@ export default function Game() {
         <View style={styles.wrapperMainPerso}>
           <View style={styles.wrapperLifeBar}>
             <View style={styles.wrapperHeart}>
-              <Heart hearts={playerState.life} />
+              <Heart hearts={playerLife} />
             </View>
             <Image style={styles.life} source={require("../assets/mun.png")} />
-            <Text style={styles.mun}>{playerState.bullet}</Text>
+            <Text style={styles.mun}>{playerBullet}</Text>
           </View>
           <Image
             style={styles.imgInBoxMain}
@@ -122,10 +117,10 @@ export default function Game() {
         <View style={styles.wrapperBot}>
           <View style={styles.wrapperLifeBar}>
             <View style={styles.wrapperHeart}>
-              <Heart hearts={botState.life} />
+              <Heart hearts={botLife} />
             </View>
             <Image style={styles.life} source={require("../assets/mun.png")} />
-            <Text style={styles.mun2}>{botState.bullet}</Text>
+            <Text style={styles.mun2}>{botBullet}</Text>
           </View>
           <Image
             style={styles.imgInBoxMain}
