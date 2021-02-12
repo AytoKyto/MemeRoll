@@ -14,17 +14,13 @@ import { Heart } from "../components/Heart";
 import { Bot } from "../components/Bot";
 
 export default function Game() {
-  const [playerState, setPlayerState] = useState({
-    life: 3,
-    bullet: 0,
-    hidden: false,
-  });
+  const [playerLife, setPlayerLife]=useState(3);
+  const [playerBullet, setPlayerBullet]=useState(2);
+  const [isHidden, setIsHidden] =useState(false);
 
-  const [botState, setBotState] = useState({
-    life: 3,
-    bullet: 0,
-    hidden: false,
-  });
+  const [botLife, setBotLife]=useState(3);
+  const [botBullet, setBotBullet]=useState(2);
+  const [isBotHidden, setIsBotHidden] =useState(false);
 
   const [playerAction, setPlayerAction] = useState();
   const [botAction, setBotAction] = useState("hide");
@@ -39,40 +35,48 @@ export default function Game() {
     setPlayerAction();
   }, []);
 
-  const Actions = (result) => {
-    switch (result) {
-      case "shot shot":
-        alert("bullets intercepted each other !!");
-        break;
-      case "shot hide":
-        alert("YOU MISSED !!");
-        setPlayerState( bullet - 1 );
-        break;
-      case "shot reload":
-        alert("Right in the face !");
-        break;
-      case "reload shot":
-        alert("He got us!");
-        break;
-      case "reload hide":
-        alert("We got lucky!");
-        break;
-      case "reload reload":
-        alert(`that's anticlimactic`);
-        break;
-      case "hide shot":
-        alert("He missed !");
-        break;
-      case "hide hide":
-        alert("Pussys!");
-        break;
-      case "hide reload":
-        alert("Watch out !!");
-        break;
-      default:
-        alert(`you clicked on ${playerAction}`);
+  const Actions =()=>{
+    if (conflict == 'shot shot'){
+      setPlayerBullet(playerBullet - 1);
+      setBotBullet(botBullet - 1);
+     } else if (conflict == 'hide hide'){
+     setPlayerBullet(playerBullet + 1);
     }
-  };
+  }
+  // const Actions = (result) => {
+  //   switch (result) {
+  //     case "shot shot":
+  //       alert("bullets intercepted each other !!");
+  //       break;
+  //     case "shot hide":
+  //       alert("YOU MISSED !!");
+  //       setPlayerState( bullet - 1 );
+  //       break;
+  //     case "shot reload":
+  //       alert("Right in the face !");
+  //       break;
+  //     case "reload shot":
+  //       alert("He got us!");
+  //       break;
+  //     case "reload hide":
+  //       alert("We got lucky!");
+  //       break;
+  //     case "reload reload":
+  //       alert(`that's anticlimactic`);
+  //       break;
+  //     case "hide shot":
+  //       alert("He missed !");
+  //       break;
+  //     case "hide hide":
+  //       alert("Pussys!");
+  //       break;
+  //     case "hide reload":
+  //       alert("Watch out !!");
+  //       break;
+  //     default:
+  //       alert(`you clicked on ${playerAction}`);
+  //   }
+  // };
 
   return (
     <View style={styles.bigWrapper}>
@@ -94,10 +98,10 @@ export default function Game() {
         <View style={styles.wrapperMainPerso}>
           <View style={styles.wrapperLifeBar}>
             <View style={styles.wrapperHeart}>
-              <Heart hearts={playerState.life} />
+              <Heart hearts={playerLife.life} />
             </View>
             <Image style={styles.life} source={require("../assets/mun.png")} />
-            <Text style={styles.mun}>{playerState.bullet}</Text>
+            <Text style={styles.mun}>{playerBullet.bullet}</Text>
           </View>
           <Image
             style={styles.imgInBoxMain}
@@ -109,10 +113,10 @@ export default function Game() {
         <View style={styles.wrapperBot}>
           <View style={styles.wrapperLifeBar}>
             <View style={styles.wrapperHeart}>
-              <Heart hearts={botState.life} />
+              <Heart hearts={botLife.life} />
             </View>
             <Image style={styles.life} source={require("../assets/mun.png")} />
-            <Text style={styles.mun2}>{botState.bullet}</Text>
+            <Text style={styles.mun2}>{botBullet.bullet}</Text>
           </View>
           <Image
             style={styles.imgInBoxMain}
