@@ -37,14 +37,14 @@ export default function Game() {
     if (RandomNumber == hide) {
       setBotAction("hide");
       // alert(botAction);
-    } else if (RandomNumber == shot) {
-      setBotAction("shot");
+    } else if (botBullet == 0) {
+      setBotAction("reload");
       // alert(botAction);
     } else if (RandomNumber == reload) {
       setBotAction("reload");
       // alert(botAction);
-    } else if (botBullet == 0) {
-      setBotAction("hide");
+    } else if (RandomNumber == shot) {
+      setBotAction("shot");
       // alert(botAction);
     } else {
       alert("error");
@@ -84,6 +84,10 @@ export default function Game() {
     } else {
       alert(`you clicked on ${playerAction}`);
     }
+
+    // if (playerBullet == 0) {
+    //   playerAction("reload");
+    // }
   };
 
   const imgMain = () => {
