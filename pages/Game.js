@@ -91,11 +91,9 @@ export default function Game() {
     }
   };
 
-  const isGameFinished =()=>{
-    if(playerLife || botLife ===0){
+  const isGameFinished = () => {
+    if (playerLife === 0 || botLife === 0) {
       alert("ONE OF YOU DESERVED TO DIE!!!");
-      setRound(round +1);
-
     }
   }
 
@@ -103,6 +101,7 @@ export default function Game() {
     BotAction();
     Actions(conflict);
     setPlayerAction(choice);
+    isGameFinished();
   };
   return (
     <View style={styles.bigWrapper}>
@@ -111,7 +110,7 @@ export default function Game() {
       </View>
       <View style={styles.wrapperTour}>
         <Text style={styles.tour}>Round</Text>
-  <Text style={styles.nbrTour}>{round}</Text>
+        <Text style={styles.nbrTour}>{round}</Text>
       </View>
       <Bot />
       <View style={styles.wrapperGameView}>
